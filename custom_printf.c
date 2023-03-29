@@ -48,6 +48,7 @@ int _printf(const char *format, ...)
         {
             s_copy++;
            switch (*s_copy) {
+               case 'i':
                case 'd':
                    {
                        printNum(va_arg(ap, int));
