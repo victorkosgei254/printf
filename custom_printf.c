@@ -2,7 +2,7 @@
 #include "main.h"
 #include <stdarg.h>
 
-int getArgCount(char *s)
+int getArgCount(const char *s)
 {
     int arg_count;
     
@@ -33,15 +33,15 @@ void printNum(int x)
     }
         _putchar(x % 10 + '0');
 }
-int printf(char *s, ...)
+int _printf(const char *format, ...)
 {
     int arg_count;
-    char *s_copy;
+    const char *s_copy;
     va_list ap;
 
-    arg_count = getArgCount(s);
+    arg_count = getArgCount(format);
     va_start(ap,arg_count);
-    s_copy = s;
+    s_copy = format;
     while (*s_copy != '\0')
     {
         if (*s_copy == '%')
@@ -73,7 +73,7 @@ int printf(char *s, ...)
                    }
                 default:
                    {
-                       printf("Invalid argument");
+                       _printf("Invalid argument");
                        exit(98);
                    }
            } 
@@ -86,11 +86,5 @@ int printf(char *s, ...)
     }
     va_end(ap);
     _putchar('\n');
-    return (0);
-}
-int main(void)
-{
-    printf("Hello there %s and %d plus %c","String is here",-98,'V');
-
     return (0);
 }
